@@ -15,8 +15,7 @@
   ],
 
   "environment": {
-    "RADIO_URL":
-      "spinel+hdlc+uart:///dev/serial/by-id/usb-Nordic_Semiconductor_nRF528xx_OpenThread_Device_DF37F36B72A5-if00?uart-baudrate=115200&uart-flow-control=none",
+    "RADIO_URL": "spinel+hdlc+uart:///dev/serial/by-id/usb-Nordic_Semiconductor_nRF528xx_OpenThread_Device_DF37F36B72A5-if00?uart-baudrate=115200&uart-flow-control=none",
     "TREL_URL": "",
     "OTBR_WEB_PORT": "8080"
   },
@@ -30,10 +29,7 @@
     "nat64": false
   },
 
-  "ports": {
-    "8080/tcp": 8079,
-    "8081/tcp": 8081
-  },
+  "ports": { "8080/tcp": 8079, "8081/tcp": 8081 },
   "ports_description": {
     "8080/tcp": "OpenThread Web UI",
     "8081/tcp": "OpenThread REST API"
@@ -43,10 +39,10 @@
     "device": "device(subsystem=tty)",
     "baudrate": "list(57600|115200|230400|460800|921600)",
     "flow_control": "bool",
-    "otbr_log_level":
-      "list(debug|info|notice|warning|error|critical|alert|emergency)",
+    "otbr_log_level": "list(debug|info|notice|warning|error|critical|alert|emergency)",
     "firewall": "bool",
     "nat64": "bool"
   },
+
   "startup": "services"
 }
