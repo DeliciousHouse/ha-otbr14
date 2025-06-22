@@ -8,6 +8,7 @@
   "image": "docker.io/openthread/border-router",
 
   "arch": ["aarch64", "amd64"],
+  "init": false,
   "host_network": false,
   "privileged": ["IPC_LOCK", "NET_ADMIN"],
   "devices": ["/dev/net/tun"],
