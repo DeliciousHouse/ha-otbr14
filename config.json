@@ -13,21 +13,21 @@
   "devices": ["/dev/net/tun"],
 
   "options": {
-    "device": null,
-    "baudrate": "460800",
-    "flow_control": true,
+    "device": "/dev/serial/by-id/usb-Nordic_Semiconductor_nRF528xx_OpenThread_Device_DF37F36B72A5-if00",
+    "baudrate": "115200",
+    "flow_control": false,
     "autoflash_firmware": true,
     "otbr_log_level": "notice",
-    "firewall": true,
+    "firewall": false,
     "nat64": false
   },
 
   "ports": {
-    "8080/tcp": 8079,
+    "8080/tcp":   8079,
     "8081/tcp": 8081
   },
   "ports_description": {
-    "80/tcp":   "OpenThread Web UI",
+    "8080/tcp":   "OpenThread Web UI",
     "8081/tcp": "OpenThread REST API"
   },
 
