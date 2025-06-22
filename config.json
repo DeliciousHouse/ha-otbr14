@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "latest",
   "slug": "otbr14",
   "name": "OpenThread BR (Thread 1.4)",
   "description": "OpenThread Border Router add-on using the upstream 1.4 image",
