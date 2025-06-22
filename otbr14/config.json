@@ -24,7 +24,7 @@
   "devices": [
     "/dev/net/tun"
   ],
-  "image":  "ghcr.io/openthread/otbr:main",
+  "image":  "openthread/otbr:latest",
   "init": false,
   "options": {
     "device": null,
