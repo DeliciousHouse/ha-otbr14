@@ -1,4 +1,4 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/openthread/otbr:main
 FROM $BUILD_FROM
 
 ARG BUILD_ARCH
