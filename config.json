@@ -13,6 +13,11 @@
   "privileged": ["IPC_LOCK", "NET_ADMIN"],
   "devices": ["/dev/net/tun"],
 
+  "environment": {
+    "RADIO_URL": "spinel+hdlc+uart:///dev/serial/by-id/usb-Nordic_Semiconductor_nRF528xx_OpenThread_Device_DF37F36B72A5-if00?uart-baudrate=115200&uart-flow-control=none",
+    "TREL_URL": "trel://enp6s18",
+    "OTBR_WEB_PORT": "8080",
+
   "options": {
     "device": "/dev/serial/by-id/usb-Nordic_Semiconductor_nRF528xx_OpenThread_Device_DF37F36B72A5-if00",
     "baudrate": "115200",
@@ -43,4 +48,5 @@
     "nat64": "bool"
   },
   "startup": "services"
+}
 }
