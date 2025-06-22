@@ -1,4 +1,4 @@
-ARG BUILD_FROM=docker.io/openthread/otbr:latest
+ARG BUILD_FROM
 FROM $BUILD_FROM
 
 ARG BUILD_ARCH
