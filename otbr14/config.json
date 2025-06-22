@@ -1,9 +1,9 @@
 {
-  "version": "2.14.0",
-  "slug": "openthread_border_router",
-  "name": "OpenThread Border Router",
-  "description": "OpenThread Border Router add-on",
-  "url": "https://github.com/home-assistant/addons/tree/master/openthread_border_router",
+  "version": "1.4.0-dev",
+  "slug":   "otbr14",
+  "name":   "OpenThread BR (Thread 1.4 build)",
+  "description": "OpenThread Border Router (OTBR) for Thread 1.4 networks, based on OpenThread 1.4.",
+  "url":    "https://github.com/DeliciousHouse/ha-otbr14",
   "arch": [
     "aarch64",
     "amd64"
@@ -24,7 +24,7 @@
   "devices": [
     "/dev/net/tun"
   ],
-  "image": "homeassistant/{arch}-addon-otbr",
+  "image":  "ghcr.io/openthread/otbr:main",
   "init": false,
   "options": {
     "device": null,
