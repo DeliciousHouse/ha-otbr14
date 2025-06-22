@@ -1,26 +1,15 @@
 ###############################################################################
 #  OpenThread BR (Thread 1.4 build) – Home-Assistant add-on Dockerfile
-#  Works with build.yaml that sets:
-#      build_from:
-#        aarch64: ghcr.io/home-assistant/aarch64-base-debian:bookworm
-#        amd64:   ghcr.io/home-assistant/amd64-base-debian:bookworm
-#      args:
-#        OTBR_VERSION: "<commit SHA or tag v1.4.x>"
-#        UNIVERSAL_SILABS_FLASHER: "0.0.28"
 ###############################################################################
 
-# Supervisor injects the correct base image for the architecture
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
-#-- build-time variables (passed from build.yaml) -----------------------------
 ARG OTBR_VERSION
 ARG UNIVERSAL_SILABS_FLASHER
 
-# Use bash + pipefail for every RUN
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Feature flags exposed at runtime
 ENV BORDER_ROUTING=1 \
     BACKBONE_ROUTER=1 \
     PLATFORM=debian \
@@ -31,23 +20,19 @@ ENV BORDER_ROUTING=1 \
     DOCKER=1
 
 ###############################################################################
-# ----- build dependencies & helper files ------------------------------------
+# ----- build dependencies ----------------------------------------------------
 ###############################################################################
 COPY 0001-channel-monitor-disable-by-default.patch /usr/src/
 COPY openthread-core-ha-config-posix.h           /usr/src/
 
-# Packages required **before** script/bootstrap runs
 RUN set -eux && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        # tools we call BEFORE bootstrap
         git patch diffutils \
-        # OTBR build deps (same list as upstream script/bootstrap)
         build-essential ninja-build cmake wget ca-certificates \
         libreadline-dev libncurses-dev libcpputest-dev libdbus-1-dev \
         libavahi-common-dev libavahi-client-dev libboost-dev \
         libboost-filesystem-dev libboost-system-dev libnetfilter-queue-dev \
-        # runtime helpers
         iproute2 python3 python3-pip lsb-release netcat-openbsd socat sudo \
         nodejs npm && \
 \
@@ -61,13 +46,11 @@ RUN set -eux && \
     git submodule update --init && \
     ./script/bootstrap && \
 \
-    # apply HA patch & custom proj-config BEFORE we run cmake
     cd third_party/openthread/repo && \
     patch -p1 < /usr/src/0001-channel-monitor-disable-by-default.patch && \
     cp /usr/src/openthread-core-ha-config-posix.h . && \
     cd ../../.. && \
 \
-    # make “openthread” routing table entry (matches upstream install script)
     echo "88 openthread" >> /etc/iproute2/rt_tables && \
 \
     ./script/cmake-build \
@@ -100,8 +83,7 @@ RUN set -eux && \
 ###############################################################################
 # ----- flash helper & clean-up ----------------------------------------------
 ###############################################################################
-    pip install universal-silabs-flasher=="${UNIVERSAL_SILABS_FLASHER}" && \
-\
+    pip3 install universal-silabs-flasher=="${UNIVERSAL_SILABS_FLASHER}" && \
     apt-get purge -y --auto-remove \
         git patch diffutils nodejs npm \
         build-essential ninja-build cmake wget ca-certificates \
