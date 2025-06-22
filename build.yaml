@@ -1,7 +1,7 @@
 ---
 build_from:
   aarch64: ghcr.io/home-assistant/aarch64-base-debian:bookworm
-  amd64: ghcr.io/openthread/otbr:main
-args:
-  OTBR_VERSION: 826ebdf363d926bef906f92a876a8540d9223d5a
-  UNIVERSAL_SILABS_FLASHER: 0.0.28
+  amd64: docker.io/openthread/otbr:latest
+# args:
+#   OTBR_VERSION: 826ebdf363d926bef906f92a876a8540d9223d5a
+#   UNIVERSAL_SILABS_FLASHER: 0.0.28
