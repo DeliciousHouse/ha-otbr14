@@ -24,7 +24,6 @@
   "devices": [
     "/dev/net/tun"
   ],
-  "image":  "docker.io/openthread/otbr:latest",
   "init": false,
   "options": {
     "device": null,
